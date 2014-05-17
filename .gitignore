@@ -1,0 +1,5 @@
+boatd_client.egg-info/
+build/
+dist/
+*.swp
+*.pyc
