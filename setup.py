@@ -9,6 +9,7 @@ setup(
     license='GPL',
     keywords='boat sailing wrapper rest',
     url='https://github.com/boatd/python-boatd',
+    packages=['boatd_client'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
