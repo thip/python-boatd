@@ -38,6 +38,10 @@ class Boat(object):
         content = self._get('/position')
         return tuple(content.get('result'))
 
+    def version(self):
+        content = self._get('/')
+        return content.get('boatd').get('version')
+
     def rudder(self, angle):
         request = self._post({'value': angle}, '/rudder')
         content = json.loads(request.read().decode('utf-8'))
@@ -51,8 +55,10 @@ class Boat(object):
 if __name__ == '__main__':
     boat = Boat()
     print(boat._get(''))
+    print(boat.version())
     print(boat.heading())
     print(boat.wind())
     print(boat.position())
     print(boat.rudder(0))
     print(boat.rudder(10))
+
