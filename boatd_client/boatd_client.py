@@ -63,10 +63,10 @@ class Boat(object):
 if __name__ == '__main__':
     boat = Boat()
     print(boat._get(''))
-    print(boat.version())
-    print(boat.heading())
-    print(boat.wind())
-    print(boat.position())
+    print(boat.version)
+    print(boat.heading)
+    print(boat.wind)
+    print(boat.position)
     print(boat.rudder(0))
     print(boat.rudder(10))
 
