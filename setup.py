@@ -10,6 +10,7 @@ setup(
     keywords='boat sailing wrapper rest',
     url='https://github.com/boatd/python-boatd',
     packages=['boatd_client'],
+    requires=['docopt'],
     test_requires=['nose', 'HTTPretty'],
     test_suite='nose.collector',
     classifiers=[
