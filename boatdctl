@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+'''
+boatdctl - boatd control
+
+Usage:
+    boatdctl stop
+    boatdctl heading
+    boatdctl position
+    boatdctl rudder <angle>
+    boatdctl sail <angle>
+
+Options:
+    -h --help     Show this screen.
+    --version     Show boatd version
+
+'''
+
+from docopt import docopt
+
+from boatd_client import Boat
+
+if __name__ == '__main__':
+    boat = Boat()
+    args = docopt(__doc__, version=boat.version, options_first=True)
+    print args
+    if args['rudder']:
+        print 'setting rudder to', args['<angle>']
+        boat.rudder(float(args['<angle>']))
