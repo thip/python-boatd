@@ -12,6 +12,11 @@ python-boatd
 Python module for writing `boatd <https://github.com/boatd/boatd>`_ behavior
 scripts.
 
+Installing
+==========
+
+``$ pip install boatd_client``
+
 class **Boat**
 ==============
 
