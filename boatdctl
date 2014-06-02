@@ -3,6 +3,7 @@
 boatdctl - boatd control
 
 Usage:
+    boatdctl info
     boatdctl stop
     boatdctl heading
     boatdctl position
@@ -22,7 +23,6 @@ from boatd_client import Boat
 if __name__ == '__main__':
     boat = Boat()
     args = docopt(__doc__, version=boat.version, options_first=True)
-    print args
     if args['rudder']:
         print 'setting rudder to', args['<angle>']
         boat.rudder(float(args['<angle>']))
