@@ -7,6 +7,7 @@ Usage:
     boatdctl stop
     boatdctl heading
     boatdctl position
+    boatdctl spin
     boatdctl rudder <angle>
     boatdctl sail <angle>
 
@@ -26,3 +27,13 @@ if __name__ == '__main__':
     if args['rudder']:
         print 'setting rudder to', args['<angle>']
         boat.rudder(float(args['<angle>']))
+
+    if args['sail']:
+        print 'setting sail to', args['<angle>']
+        boat.sail(float(args['<angle>']))
+
+    if args['spin']:
+        import time
+        for i in range(90):
+            a = 45 - (i)
+            boat.rudder(a)
