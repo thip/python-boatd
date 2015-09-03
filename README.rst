@@ -2,9 +2,8 @@
 python-boatd
 ============
 
-.. image:: https://pypip.in/v/boatd_client/badge.png
-    :target: https://pypi.python.org/pypi/boatd_client
-    :alt: Latest PyPI version
+.. image:: https://badge.fury.io/py/boatd_client.svg
+    :target: http://badge.fury.io/py/boatd_client
 
 .. image:: https://travis-ci.org/boatd/python-boatd.png?branch=master
     :target: https://travis-ci.org/boatd/python-boatd
