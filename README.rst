@@ -14,7 +14,7 @@ scripts.
 Installing
 ==========
 
-``$ pip install boatd_client``
+``$ pip install python-boatdclient``
 
 class **Boat**
 ==============

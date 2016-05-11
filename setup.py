@@ -14,6 +14,7 @@ setup(
     keywords='boat sailing wrapper rest',
     url='https://github.com/boatd/python-boatd',
     packages=['boatdclient'],
+    scripts=['boatdctl'],
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
