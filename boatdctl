@@ -18,6 +18,7 @@ Options:
 '''
 
 import argparse
+import sys
 
 from boatdclient import Boat
 
@@ -26,7 +27,7 @@ if __name__ == '__main__':
     subparsers = arger.add_subparsers(dest='command')
 
     help_parser = subparsers.add_parser('help')
-    info_parser = subparsers.add_parser('info')
+    info_parser = subparsers.add_parser('status')
     stop_parser = subparsers.add_parser('stop')
     heading_parser = subparsers.add_parser('heading')
     position_parser = subparsers.add_parser('position')
@@ -42,9 +43,17 @@ if __name__ == '__main__':
 
     boat = Boat()
 
-
     if opts.command == 'help':
         print(__doc__)
+
+    if opts.command == 'status':
+        try:
+            v = boat.version
+        except Exception as e:
+            print('Problem talking to boatd: "{}"'.format(e))
+            sys.exit(1)
+        print('boatd version \'{}\' responding to requests on {}'.format(v,
+              boat.boatd_url('/')))
 
     if opts.command == 'rudder':
         print('setting rudder to', opts.angle)
