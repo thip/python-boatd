@@ -40,6 +40,10 @@ class Boat(object):
         request = Request(url, post_content, headers)
         return urlopen(request)
 
+    def quit(self):
+        content = self._post({'quit': True}, '/')
+        print(content)
+
     @property
     def heading(self):
         '''Return the current heading of the boat in degrees'''
