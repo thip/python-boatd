@@ -55,6 +55,9 @@ if __name__ == '__main__':
         print('boatd version \'{}\' responding to requests on {}'.format(v,
               boat.boatd_url('/')))
 
+    if opts.command == 'heading':
+        print('heading: {}'.format(boat.heading))
+
     if opts.command == 'rudder':
         print('setting rudder to', opts.angle)
         boat.rudder(float(opts.angle))
