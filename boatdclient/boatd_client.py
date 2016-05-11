@@ -55,8 +55,8 @@ class Boat(object):
     @property
     def position(self):
         '''Return a tuple in the form `(latitude, longitude)`'''
-        content = self._get('/position')
-        return tuple(content.get('result'))
+        content = self._get('/boat')
+        return tuple(content.get('position'))
 
     @property
     def version(self):
