@@ -2,6 +2,7 @@ from httpretty import HTTPretty, httprettified
 
 from boatdclient import Boat
 
+
 @httprettified
 class TestBoatdClient(object):
     def setup(self):

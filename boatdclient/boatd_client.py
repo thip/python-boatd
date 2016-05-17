@@ -127,4 +127,3 @@ if __name__ == '__main__':
     print(boat.position)
     print(boat.rudder(0))
     print(boat.rudder(10))
-
