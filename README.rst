@@ -2,8 +2,8 @@
 python-boatd
 ============
 
-.. image:: https://badge.fury.io/py/boatd_client.svg
-    :target: http://badge.fury.io/py/boatd_client
+.. image:: https://badge.fury.io/py/python-boatdclient.svg
+    :target: http://badge.fury.io/py/python-boatdclient
 
 .. image:: https://travis-ci.org/boatd/python-boatd.png?branch=master
     :target: https://travis-ci.org/boatd/python-boatd

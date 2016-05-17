@@ -1,6 +1,6 @@
 from httpretty import HTTPretty, httprettified
 
-from boatd_client import Boat
+from boatdclient import Boat
 
 @httprettified
 class TestBoatdClient(object):
