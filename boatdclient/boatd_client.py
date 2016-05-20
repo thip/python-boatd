@@ -6,7 +6,6 @@ except ImportError:
     from urllib2 import urlopen, Request
 
 from collections import namedtuple
-
 import json
 
 Wind = namedtuple('Wind', ['direction', 'speed'])
@@ -48,7 +47,56 @@ class Boatd(object):
         print(content)
 
 
-class Boat(object):
+class LegacyBoat(object):
+   '''
+   A boat controlled by boatd. This is the legacy boat interface for backwards
+   compatibility. Deprecated.
+   '''
+
+    def __init__(self, boatd=None):
+        if boatd is None:
+            self.boatd = Boatd()
+        else:
+            self.boatd = boatd
+
+    @property
+    def heading(self):
+        '''Return the current heading of the boat in degrees'''
+        content = self.boatd.get('/boat')
+        return float(content.get('heading'))
+
+    @property
+    def wind(self):
+        '''Return the direction of the wind in degrees'''
+        content = self.boatd.get('/wind')
+        return Wind(content.get('direction'), content.get('speed'))
+
+    @property
+    def position(self):
+        '''Return a tuple in the form `(latitude, longitude)`'''
+        content = self.boatd.get('/boat')
+        return tuple(content.get('position'))
+
+    @property
+    def version(self):
+        '''Return the version of boatd'''
+        content = self.boatd.get('/')
+        return content.get('boatd').get('version')
+
+    def rudder(self, angle):
+        '''Set the angle of the rudder to be `angle` degrees'''
+        request = self.boatd.post({'value': angle}, '/rudder')
+        content = json.loads(request.read().decode('utf-8'))
+        return content.get('result')
+
+    def sail(self, angle):
+        '''Set the angle of the sail to `angle` degrees'''
+        request = self.boatd.post({'value': angle}, '/sail')
+        content = json.loads(request.read().decode('utf-8'))
+        return content.get('result')
+
+
+class ConvenienceBoat(object):
     '''A boat controlled by boatd'''
 
     def __init__(self, boatd=None):
@@ -92,6 +140,13 @@ class Boat(object):
         request = self.boatd.post({'value': angle}, '/sail')
         content = json.loads(request.read().decode('utf-8'))
         return content.get('result')
+
+
+def Boat(convenience=False, *args, **kwargs):
+    if convenience is True:
+        return ConvenienceBoat(*args, **kwargs)
+    else:
+        return LegacyBoat(*args, **kwargs)
 
 
 class Behaviour(object):
