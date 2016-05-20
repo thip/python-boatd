@@ -8,6 +8,10 @@ except ImportError:
 from collections import namedtuple
 import json
 
+from .bearing import Bearing
+from .point import Point
+
+
 Wind = namedtuple('Wind', ['direction', 'speed'])
 
 
@@ -48,10 +52,10 @@ class Boatd(object):
 
 
 class LegacyBoat(object):
-   '''
-   A boat controlled by boatd. This is the legacy boat interface for backwards
-   compatibility. Deprecated.
-   '''
+    '''
+    A boat controlled by boatd. This is the legacy boat interface for backwards
+    compatibility. Deprecated.
+    '''
 
     def __init__(self, boatd=None):
         if boatd is None:
@@ -109,19 +113,20 @@ class ConvenienceBoat(object):
     def heading(self):
         '''Return the current heading of the boat in degrees'''
         content = self.boatd.get('/boat')
-        return float(content.get('heading'))
+        return Bearing(float(content.get('heading')))
 
     @property
     def wind(self):
         '''Return the direction of the wind in degrees'''
         content = self.boatd.get('/wind')
-        return Wind(content.get('direction'), content.get('speed'))
+        return Wind(Bearing(content.get('direction')), content.get('speed'))
 
     @property
     def position(self):
         '''Return a tuple in the form `(latitude, longitude)`'''
         content = self.boatd.get('/boat')
-        return tuple(content.get('position'))
+        lat, lon = content.get('position')
+        return Point(lat, lon)
 
     @property
     def version(self):
@@ -131,13 +136,13 @@ class ConvenienceBoat(object):
 
     def rudder(self, angle):
         '''Set the angle of the rudder to be `angle` degrees'''
-        request = self.boatd.post({'value': angle}, '/rudder')
+        request = self.boatd.post({'value': float(angle)}, '/rudder')
         content = json.loads(request.read().decode('utf-8'))
         return content.get('result')
 
     def sail(self, angle):
         '''Set the angle of the sail to `angle` degrees'''
-        request = self.boatd.post({'value': angle}, '/sail')
+        request = self.boatd.post({'value': float(angle)}, '/sail')
         content = json.loads(request.read().decode('utf-8'))
         return content.get('result')
 
