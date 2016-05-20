@@ -148,6 +148,10 @@ class ConvenienceBoat(object):
 
 
 def Boat(convenience=False, *args, **kwargs):
+    '''
+    Return a Boat instance. If ``convenience`` is True, return an instance of
+    ``ConvenienceBoat``, otherwise return ``LegacyBoat``.
+    '''
     if convenience is True:
         return ConvenienceBoat(*args, **kwargs)
     else:
