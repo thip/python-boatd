@@ -134,17 +134,17 @@ class ConvenienceBoat(object):
         content = self.boatd.get('/')
         return content.get('boatd').get('version')
 
-    def rudder(self, angle):
+    def set_rudder(self, angle):
         '''Set the angle of the rudder to be `angle` degrees'''
+        angle = float(angle)
         request = self.boatd.post({'value': float(angle)}, '/rudder')
-        content = json.loads(request.read().decode('utf-8'))
-        return content.get('result')
+        return request.get('result')
 
-    def sail(self, angle):
+    def set_sail(self, angle):
         '''Set the angle of the sail to `angle` degrees'''
+        angle = float(angle)
         request = self.boatd.post({'value': float(angle)}, '/sail')
-        content = json.loads(request.read().decode('utf-8'))
-        return content.get('result')
+        return request.get('result')
 
 
 def Boat(convenience=False, *args, **kwargs):
