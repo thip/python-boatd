@@ -62,7 +62,7 @@ if __name__ == '__main__':
               boat.boatd.url('/')))
 
     if opts.command == 'quit':
-        boat.quit()
+        boat.boatd.quit()
 
     if opts.command == 'behaviour-list':
         behaviour = Behaviour()
