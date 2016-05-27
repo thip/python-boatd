@@ -179,8 +179,8 @@ class Behaviour(object):
         :param name: the name of the behaviour to run
         :type name: str
         '''
-        d = self.boatd.post({'current': name}, endpoint='/behaviours')
-        current = d.get('current')
+        d = self.boatd.post({'active': name}, endpoint='/behaviours')
+        current = d.get('active')
         if current is not None:
             return 'started {}'.format(current)
         else:
