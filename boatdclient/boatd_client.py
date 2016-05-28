@@ -62,19 +62,34 @@ class Boat(object):
 
     @property
     def heading(self):
-        '''Return the current heading of the boat in degrees'''
+        '''
+        Return the current heading of the boat in degrees.
+
+        :returns: current bearing
+        :rtype: Bearing
+        '''
         content = self.boatd.get('/boat')
         return Bearing(float(content.get('heading')))
 
     @property
     def wind(self):
-        '''Return the direction of the wind in degrees'''
+        '''
+        Return the direction of the wind in degrees.
+
+        :returns: wind direction bearing
+        :rtype: Bearing
+        '''
         content = self.boatd.get('/wind')
         return Wind(Bearing(content.get('direction')), content.get('speed'))
 
     @property
     def position(self):
-        '''Return a tuple in the form `(latitude, longitude)`'''
+        '''
+        Return the current position of the boat.
+
+        :returns: current position
+        :rtype: Point
+        '''
         content = self.boatd.get('/boat')
         lat, lon = content.get('position')
         return Point(lat, lon)
@@ -86,13 +101,23 @@ class Boat(object):
         return content.get('boatd').get('version')
 
     def set_rudder(self, angle):
-        '''Set the angle of the rudder to be `angle` degrees'''
+        '''
+        Set the angle of the rudder to be `angle` degrees.
+
+        :param angle: rudder angle
+        :type angle: float between -90 and 90
+        '''
         angle = float(angle)
         request = self.boatd.post({'value': float(angle)}, '/rudder')
         return request.get('result')
 
     def set_sail(self, angle):
-        '''Set the angle of the sail to `angle` degrees'''
+        '''
+        Set the angle of the sail to `angle` degrees
+
+        :param angle: sail angle
+        :type angle: float between -90 and 90
+        '''
         angle = float(angle)
         request = self.boatd.post({'value': float(angle)}, '/sail')
         return request.get('result')
