@@ -51,7 +51,7 @@ class Boatd(object):
         print(content)
 
 
-class ConvenienceBoat(object):
+class Boat(object):
     '''A boat controlled by boatd'''
 
     def __init__(self, boatd=None):
@@ -96,17 +96,6 @@ class ConvenienceBoat(object):
         angle = float(angle)
         request = self.boatd.post({'value': float(angle)}, '/sail')
         return request.get('result')
-
-
-def Boat(convenience=False, *args, **kwargs):
-    '''
-    Return a Boat instance. If ``convenience`` is True, return an instance of
-    ``ConvenienceBoat``, otherwise return ``LegacyBoat``.
-    '''
-    if convenience is True:
-        return ConvenienceBoat(*args, **kwargs)
-    else:
-        raise ImportError
 
 
 class Behaviour(object):
