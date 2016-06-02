@@ -50,6 +50,12 @@ class Boatd(object):
         content = self.post({'quit': True}, '/')
         print(content)
 
+    @property
+    def version(self):
+        '''Return the version of boatd'''
+        content = self.boatd.get('/')
+        return content.get('boatd').get('version')
+
 
 class Boat(object):
     '''A boat controlled by boatd'''
@@ -97,12 +103,6 @@ class Boat(object):
         content = self.boatd.get('/boat')
         lat, lon = content.get('position')
         return Point(lat, lon)
-
-    @property
-    def version(self):
-        '''Return the version of boatd'''
-        content = self.boatd.get('/')
-        return content.get('boatd').get('version')
 
     def set_rudder(self, angle):
         '''
