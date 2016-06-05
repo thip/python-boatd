@@ -82,7 +82,7 @@ class Boat(object):
         '''
         Return the direction of the wind in degrees.
 
-        :returns: wind direction bearing
+        :returns: wind object containing direction bearing and speed
         :rtype: Wind
         '''
         content = self.boatd.get('/wind')
@@ -91,6 +91,17 @@ class Boat(object):
             content.get('speed'),
             Bearing(content.get('direction')) - self.heading
         )
+
+    @property
+    def relative_wind(self):
+        '''
+        Return the direction of the wind, relative to the boat's current
+        direction.
+
+        :returns: wind direction bearing in boat coordinates
+        :rtype: Bearing
+        '''
+        return self.wind.direction - self.heading
 
     @property
     def position(self):
