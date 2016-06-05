@@ -173,22 +173,19 @@ class Behaviour(object):
         self.start(None)
 
 
-class Waypoints(object):
-    def __init__(self, boatd=None):
-        if boatd is None:
-            self.boatd = Boatd()
-        else:
-            self.boatd = boatd
+def get_current_waypoints(boatd=None):
+    '''
+    Get the current set of waypoints active from boatd.
 
-    def current_waypoints(self):
-        '''
-        Get the current set of waypoints active from boatd.
+    :returns: The current waypoints
+    :rtype: List of Points
+    '''
 
-        :returns: The current waypoints
-        :rtype: List of Points
-        '''
-        content = self.boatd.get('/waypoints')
-        return [Point(*coords) for coords in content.get('waypoints')]
+    if boatd is None:
+        boatd = Boatd()
+
+    content = boatd.get('/waypoints')
+    return [Point(*coords) for coords in content.get('waypoints')]
 
 
 
