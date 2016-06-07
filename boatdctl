@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
     if opts.command == 'status':
         try:
-            v = boat.version
+            v = boat.boatd.version
         except Exception as e:
             print('Problem talking to boatd: "{}"'.format(e))
             sys.exit(1)
@@ -87,14 +87,14 @@ if __name__ == '__main__':
 
     if opts.command == 'rudder':
         print('setting rudder to', opts.angle)
-        boat.rudder(float(opts.angle))
+        boat.set_rudder(float(opts.angle))
 
     if opts.command == 'sail':
         print('setting sail to', opts.angle)
-        boat.sail(float(opts.angle))
+        boat.set_sail(float(opts.angle))
 
     if opts.command == 'spin':
         import time
         for i in range(90):
             a = 45 - (i)
-            boat.rudder(a)
+            boat.set_rudder(a)
