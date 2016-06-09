@@ -87,9 +87,9 @@ class Boat(object):
         '''
         content = self.boatd.get('/wind')
         return Wind(
-            Bearing(content.get('direction')),
-            content.get('speed'),
             Bearing(content.get('direction')) - self.heading
+            content.get('speed'),
+            Bearing(content.get('direction')),
         )
 
     @property
