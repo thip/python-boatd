@@ -188,6 +188,21 @@ def get_current_waypoints(boatd=None):
     return [Point(*coords) for coords in content.get('waypoints')]
 
 
+def get_home_position(boatd=None):
+    '''
+    Get the current home position from boatd.
+
+    :returns: The configured home position
+    :rtype: Points
+    '''
+
+    if boatd is None:
+        boatd = Boatd()
+
+    content = boatd.get('/waypoints')
+    lat, lon = content.get('home', None)
+    return Point(lat, lon)
+
 
 if __name__ == '__main__':
     boat = Boat()
