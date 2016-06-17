@@ -16,39 +16,8 @@ Installing
 
 ``$ pip install python-boatdclient``
 
-class **Boat**
-==============
+Documentation
+=============
 
-A boat controlled by boatd
-
-
-**Attributes**
-----------------
-
-``heading``:
-Return the current heading of the boat in degrees
-
-``position``:
-Return a tuple in the form ``(latitude, longitude)``
-
-``version``:
-Return the version of boatd
-
-``wind``:
-Return a tuple in the form ``(direction, speed)``. This contains the direction of the wind in degrees and the speed the wind is blowing in knots.
-
-**methods**
------------
-
-``def __init__(self, host='localhost', port=2222)``
-
-Create a boat instance, connecting to boatd at ``host`` on port ``port``
-
-``def __rudder__(self, angle)``
-
-Set the angle of the rudder to be ``angle`` degrees
-
-``def __sail__(self, angle)``
-
-Set the angle of the sail to ``angle`` degrees
-
+Documentation can be found with the rest of boatd's documentation:
+http://boatd.readthedocs.io/
