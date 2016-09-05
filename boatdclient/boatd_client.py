@@ -85,11 +85,11 @@ class Boat(object):
         :returns: wind object containing direction bearing and speed
         :rtype: Wind
         '''
-        content = self.boatd.get('/wind')
+        content = self.boatd.get('/relative_wind')
         return Wind(
-            Bearing(content.get('direction')) - self.heading,
+            Bearing(content.get('relative_direction')) - self.heading,
             content.get('speed'),
-            Bearing(content.get('direction'))
+            Bearing(content.get('relative_direction'))
         )
 
     @property
@@ -101,7 +101,7 @@ class Boat(object):
         :returns: wind direction bearing in boat coordinates
         :rtype: Bearing
         '''
-        return self.wind.direction
+        return self.wind.relative_direction
 
     @property
     def position(self):
@@ -212,7 +212,7 @@ if __name__ == '__main__':
     boat = Boat()
     print(boat.version)
     print(boat.heading)
-    print(boat.wind)
+    print(boat.relative_wind_direction)
     print(boat.position)
     print(boat.rudder(0))
     print(boat.rudder(10))
